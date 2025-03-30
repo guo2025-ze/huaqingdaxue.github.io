@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>华清大学 - 明德厚学 求是创新</title>
+    <style>
+        /* 新增新闻板块样式 */
+        .news-list {
+            margin: 20px 0;
+        }
+        .news-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s;
+        }
+        .news-item:hover {
+            background: #f9f9f9;
+        }
+        .news-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .news-title {
+            color: #003366;
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 修改导航栏 -->
+    <nav>
+        <a href="#home" onclick="showSection('home')">学校概况</a>
+        <a href="#news" onclick="showSection('news')">新闻动态</a>
+        <a href="#apply" onclick="showSection('apply')">新生报名</a>
+    </nav>
+
+    <!-- 新增新闻板块 -->
+    <div id="news" class="section">
+        <h2>校园新闻</h2>
+        <div class="news-list">
+            <div class="news-item">
+                <div class="news-date">2025-03-28</div>
+                <div class="news-title">华清大学研发新型量子芯片取得突破</div>
+                <p>我校量子计算研究院团队近日在《Nature》发表最新研究成果，成功研发可编程光子量子芯片，运算速度提升百倍...</p>
+            </div>
+            <div class="news-item">
+                <div class="news-date">2025-03-25</div>
+                <div class="news-title">国际AI峰会在我校成功举办</div>
+                <p>来自全球30个国家的200余位专家学者齐聚华清，共同探讨人工智能伦理与创新发展，我校发布《AI治理白皮书》...</p>
+            </div>
+            <div class="news-item">
+                <div class="news-date">2025-03-22</div>
+                <div class="news-title">校园樱花季文化活动周开幕</div>
+                <p>即日起至4月5日，图书馆前樱花大道将举办传统文化市集、科技展览等系列活动，欢迎师生校友参与...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 原有其他板块保持不变 -->
+    <script>
+        // 修改显示逻辑支持新闻板块
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(div => {
+                div.style.display = sectionId === div.id ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
