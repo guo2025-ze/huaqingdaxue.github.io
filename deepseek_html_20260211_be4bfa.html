@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华清大学 - 追求卓越，创造未来</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #990000;
+            --accent-color: #FFCC00;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+            --gray-color: #666666;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: var(--accent-color);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--accent-color);
+        }
+        
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(153, 0, 0, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #b30000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(153, 0, 0, 0.4);
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .about-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* 院系展示 */
+        .departments {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .department-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .department-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .department-icon {
+            background-color: var(--primary-color);
+            color: white;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .department-content {
+            padding: 25px;
+        }
+        
+        .department-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* 报名表单 */
+        .application-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .submit-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #b30000;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .about-section {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .application-form {
+                padding: 25px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+        }
+        
+        /* 页面切换效果 */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 成功提交提示 */
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .success-message i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>华清大学</h1>
+                    <p>追求卓越，创造未来</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#" class="nav-link active" data-page="home">首页</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">关于华清</a></li>
+                    <li><a href="#" class="nav-link" data-page="departments">院系设置</a></li>
+                    <li><a href="#" class="nav-link" data-page="application">在线报名</a></li>
+                </ul>
+                
+                <div class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 首页 -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <h2>欢迎来到华清大学</h2>
+                <p>华清大学是中国顶尖的高等学府，致力于培养具有国际视野、创新精神和社会责任感的未来领袖。我们提供世界一流的教育和研究环境，推动科学进步和社会发展。</p>
+                <a href="#" class="cta-button" data-page="application">立即报名</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>华清特色</h2>
+                </div>
+                
+                <div class="about-section">
+                    <div class="about-text">
+                        <h3>卓越的学术传统</h3>
+                        <p>华清大学创立于1911年，拥有百余年办学历史，是中国最早建立的现代高等学府之一。学校以"自强不息，厚德载物"为校训，培养了大批杰出人才。</p>
+                        <p>学校设有20个学院，58个本科专业，覆盖理、工、文、法、医、经济、管理、艺术等学科门类，形成了完整的学科体系。</p>
+                        <p>华清大学在全球大学排名中 consistently位列前茅，其工程与技术、计算机科学、材料科学等学科在国际上享有盛誉。</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80" alt="华清大学校园">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于华清页面 -->
+    <section id="about" class="page">
+        <div class="main-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>关于华清大学</h2>
+                </div>
+                
+                <div class="about-section">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="华清大学图书馆">
+                    </div>
+                    <div class="about-text">
+                        <h3>我们的使命与愿景</h3>
+                        <p>华清大学的使命是创造、保存和传播知识，培养未来领袖，推动社会进步。我们致力于通过卓越的教学、研究和创新服务社会。</p>
+                        <p>学校拥有世界一流的师资队伍，包括多位诺贝尔奖获得者、院士和学科领军人才。我们的教授不仅在各自领域做出突破性贡献，还致力于培养下一代创新者。</p>
+                        <p>华清大学校园占地5000余亩，拥有现代化的教学设施、图书馆、实验室和体育设施，为学生提供优质的学习和生活环境。</p>
+                    </div>
+                </div>
+                
+                <div class="about-section">
+                    <div class="about-text">
+                        <h3>国际交流与合作</h3>
+                        <p>华清大学与全球200多所顶尖大学和研究机构建立了合作关系，开展学生交换、联合研究和学术交流项目。学校每年接待数千名国际学生和学者，校园国际化程度位居国内高校前列。</p>
+                        <p>我们提供丰富的海外学习机会，包括学期交换、暑期项目、联合学位等，帮助学生拓展国际视野，增强跨文化交流能力。</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="国际交流">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 院系设置页面 -->
+    <section id="departments" class="page">
+        <div class="main-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>院系设置</h2>
+                </div>
+                
+                <div class="departments">
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="department-content">
+                            <h3>计算机科学与技术学院</h3>
+                            <p>培养计算机科学领域的创新人才，研究领域包括人工智能、大数据、网络安全、软件工程等。学院拥有多个国家级重点实验室。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="department-content">
+                            <h3>理学院</h3>
+                            <p>涵盖数学、物理、化学、生物等基础科学，注重理论研究和应用开发的结合，培养具有扎实科学素养的研究人才。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div class="department-content">
+                            <h3>工程学院</h3>
+                            <p>中国顶尖的工程教育基地，涵盖机械、电子、土木、材料、环境等工程学科，培养具有创新能力的工程技术人才。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="department-content">
+                            <h3>法学院</h3>
+                            <p>培养具有国际视野的法律专业人才，注重理论与实践相结合，研究领域涵盖民法、刑法、国际法、知识产权法等。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="department-content">
+                            <h3>经济与管理学院</h3>
+                            <p>培养经济管理领域的领军人才，提供经济学、金融学、会计学、市场营销、人力资源管理等专业教育。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="department-card">
+                        <div class="department-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="department-content">
+                            <h3>人文艺术学院</h3>
+                            <p>涵盖文学、历史、哲学、艺术设计、音乐、戏剧等学科，注重人文素养和艺术创造力的培养。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 在线报名页面 -->
+    <section id="application" class="page">
+        <div class="main-content">
+            <div class="container">
+                <div class="section-title">
+                    <h2>在线报名</h2>
+                </div>
+                
+                <div class="application-form">
+                    <form id="admission-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">姓</label>
+                                <input type="text" id="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">名</label>
+                                <input type="text" id="lastName" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">电子邮箱</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">联系电话</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birthdate">出生日期</label>
+                            <input type="date" id="birthdate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">通讯地址</label>
+                            <input type="text" id="address" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="department">申请院系</label>
+                            <select id="department" class="form-control" required>
+                                <option value="">请选择院系</option>
+                                <option value="computer">计算机科学与技术学院</option>
+                                <option value="science">理学院</option>
+                                <option value="engineering">工程学院</option>
+                                <option value="law">法学院</option>
+                                <option value="business">经济与管理学院</option>
+                                <option value="arts">人文艺术学院</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="education">最高学历</label>
+                            <select id="education" class="form-control" required>
+                                <option value="">请选择学历</option>
+                                <option value="highschool">高中</option>
+                                <option value="associate">专科</option>
+                                <option value="bachelor">本科</option>
+                                <option value="master">硕士</option>
+                                <option value="doctor">博士</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">个人陈述</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="请简要介绍您的学术背景、研究兴趣和申请理由..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">提交报名申请</button>
+                    </form>
+                    
+                    <div class="success-message" id="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>报名成功！</h3>
+                        <p>感谢您申请华清大学。我们已收到您的报名信息，招生办公室将在3-5个工作日内通过电子邮件与您联系。</p>
+                        <p>您也可以随时登录我们的招生系统查看申请状态。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>华清大学</h3>
+                    <p>追求卓越，创造未来。华清大学致力于培养具有国际视野、创新精神和社会责任感的未来领袖。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#" data-page="home">首页</a></li>
+                        <li><a href="#" data-page="about">关于华清</a></li>
+                        <li><a href="#" data-page="departments">院系设置</a></li>
+                        <li><a href="#" data-page="application">在线报名</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 北京市海淀区华清路1号</p>
+                        <p><i class="fas fa-phone"></i> (010) 6278-0000</p>
+                        <p><i class="fas fa-envelope"></i> admission@huaqing.edu.cn</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 华清大学 版权所有 | 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 页面切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+            
+            // 导航菜单点击事件
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有链接的active类
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    
+                    // 给当前点击的链接添加active类
+                    this.classList.add('active');
+                    
+                    // 隐藏所有页面
+                    pages.forEach(page => page.classList.remove('active'));
+                    
+                    // 显示目标页面
+                    const targetPage = this.getAttribute('data-page');
+                    document.getElementById(targetPage).classList.add('active');
+                    
+                    // 移动端菜单点击后关闭
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+            
+            // 移动端菜单按钮点击事件
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            // 表单提交处理
+            const admissionForm = document.getElementById('admission-form');
+            const successMessage = document.getElementById('success-message');
+            
+            admissionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 获取表单数据
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    birthdate: document.getElementById('birthdate').value,
+                    address: document.getElementById('address').value,
+                    department: document.getElementById('department').value,
+                    education: document.getElementById('education').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // 在实际应用中，这里应该将数据发送到服务器
+                // 这里我们只是模拟提交过程
+                
+                // 显示成功消息
+                admissionForm.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // 保存到本地存储（模拟数据库）
+                saveApplicationToLocalStorage(formData);
+                
+                // 3秒后滚动到顶部
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 500);
+            });
+            
+            // 保存报名信息到本地存储
+            function saveApplicationToLocalStorage(data) {
+                // 获取现有数据或创建新数组
+                let applications = JSON.parse(localStorage.getItem('huaqingApplications')) || [];
+                
+                // 添加新申请
+                applications.push({
+                    ...data,
+                    submissionDate: new Date().toISOString(),
+                    applicationId: 'HQ' + Date.now()
+                });
+                
+                // 保存回本地存储
+                localStorage.setItem('huaqingApplications', JSON.stringify(applications));
+                
+                console.log('报名信息已保存到本地存储，申请总数:', applications.length);
+            }
+            
+            // 设置最小出生日期（至少16岁）
+            const today = new Date();
+            const minDate = new Date(today.getFullYear() - 16, today.getMonth(), today.getDate());
+            document.getElementById('birthdate').max = minDate.toISOString().split('T')[0];
+            
+            // 设置最大出生日期（至少100岁）
+            const maxDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+            document.getElementById('birthdate').min = maxDate.toISOString().split('T')[0];
+        });
+    </script>
+</body>
+</html>
